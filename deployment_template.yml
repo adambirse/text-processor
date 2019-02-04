@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: processor
+  template:
+    metadata:
+      labels:
+        app: processor
+    spec:
+      containers:
+      - name: processor
+        image: gcr.io/_PROJECT_NAME_/_DOCKER_IMAGE_NAME_:_TRAVIS_COMMIT_
+        env:
+          - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+            value: "brawny-unicorn-cp-kafka:9092"
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,13 @@
+spring:
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+app:
+  topic:
+    text: text
+
+logging:
+  level:
+    root: WARN
+    org.springframework.web: INFO
+    com.birse: DEBUG

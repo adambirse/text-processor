@@ -1,0 +1,8 @@
+version: '3'
+services:
+  text-processor:
+    image: text-processor:latest
+networks:
+  default:
+    external:
+      name: kafka-docker-compose_kafka

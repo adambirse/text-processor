@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply from: rootProject.file("gradle_support/spring-boot.gradle")
+
+dependencies {
+    compile("org.springframework.kafka:spring-kafka")
+    compile("org.apache.commons:commons-math3:3.6.1")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+
+
+    testCompile("org.springframework.kafka:spring-kafka-test")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+
+}
+
+
+group = 'com.birse'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+
