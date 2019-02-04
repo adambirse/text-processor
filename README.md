@@ -1,4 +1,4 @@
-# Text Ingester
+# Text Processor
 
 
 ## Building
@@ -25,6 +25,10 @@ https://github.com/adambirse/kafka-docker-compose
 `docker-compose up -d`
 
 
-### Send some data
+### Processing
 
-`curl -d '{"text":"value"}' -H "Content-Type: application/json" -X POST http://localhost:8080/text`
+Intended to process data received from this service
+
+https://github.com/adambirse/text-ingester
+
+
