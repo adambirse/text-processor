@@ -5,6 +5,7 @@ spring:
 app:
   topic:
     text: text
+    cost: cost
 
 logging:
   level:

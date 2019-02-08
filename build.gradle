@@ -6,6 +6,9 @@ buildscript {
 
 repositories {
     mavenCentral()
+    maven {
+        url  "https://dl.bintray.com/adambirse/cost-extractor"
+    }
 }
 
 apply plugin: 'java'
@@ -17,8 +20,7 @@ dependencies {
     compile("org.apache.commons:commons-math3:3.6.1")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-
-
+    compile 'com.birse:cost-extractor:1.0'
 
     testCompile("org.springframework.kafka:spring-kafka-test")
     testCompile("org.springframework.boot:spring-boot-starter-test")
