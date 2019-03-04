@@ -2,6 +2,10 @@ package com.birse.processor;
 
 import com.birse.processor.domain.Cost;
 import com.birse.processor.domain.Text;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -22,6 +26,15 @@ import java.util.Map;
 public class KafkaConfig {
 
     @Bean
+    public ObjectMapper getObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.registerModule(new Jdk8Module());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return objectMapper;
+    }
+
+    @Bean
     public ConsumerFactory<Long, Text> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(
@@ -30,7 +43,7 @@ public class KafkaConfig {
         props.put(
                 ConsumerConfig.GROUP_ID_CONFIG,
                 "processor");
-        return new DefaultKafkaConsumerFactory<>(props, new LongDeserializer(), new JsonDeserializer<>(Text.class));
+        return new DefaultKafkaConsumerFactory<>(props, new LongDeserializer(), new JsonDeserializer<>(Text.class, getObjectMapper()));
     }
 
     @Bean
@@ -40,7 +53,7 @@ public class KafkaConfig {
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 "kafka1:9092,kafka2:9092,kafka3:9092");
 
-        return new DefaultKafkaProducerFactory<>(props, new LongSerializer(), new JsonSerializer<>());
+        return new DefaultKafkaProducerFactory<>(props, new LongSerializer(), new JsonSerializer<>(getObjectMapper()));
     }
 
     @Bean
