@@ -10,6 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.LongSerializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -25,6 +26,9 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
+    @Value("${app.kafka.bootstrap-servers}")
+    private String servers;
+
     @Bean
     public ObjectMapper getObjectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -39,7 +43,7 @@ public class KafkaConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "kafka1:9092,kafka2:9092,kafka3:9092");
+                servers);
         props.put(
                 ConsumerConfig.GROUP_ID_CONFIG,
                 "processor");
