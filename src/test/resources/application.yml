@@ -1,21 +1,6 @@
-spring:
-  kafka:
-    bootstrap-servers: ${spring.embedded.kafka.brokers}
-    consumer:
-      group-id: processor
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring:
-          json:
-            trusted:
-              packages: 'com.birse.processor.domain'
 app:
   topic:
     text: text
-logging:
-  level:
-    root: WARN
-    org.springframework.web: INFO
-    com.birse: DEBUG
+    cost: cost
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
