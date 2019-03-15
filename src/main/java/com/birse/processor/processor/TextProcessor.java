@@ -1,7 +1,6 @@
 package com.birse.processor.processor;
 
 import com.birse.extractor.NumberExtractor;
-import com.birse.extractor.exception.NumberExtractionException;
 import com.birse.processor.domain.Cost;
 import com.birse.processor.domain.Text;
 import com.birse.processor.messaging.CostSender;
@@ -30,15 +29,13 @@ public class TextProcessor {
     }
 
     public void process(Text text) {
-        try {
-            List<BigDecimal> values = extractor.extract(text.getText());
-            values.stream().forEach(value ->
-            {
-                Cost cost = new Cost(text.getTime(), value);
-                costSender.send(cost);
-            });
-        } catch (NumberExtractionException e) {
-            e.printStackTrace();
-        }
+
+        List<BigDecimal> values = extractor.extract(text.getText());
+        values.stream().forEach(value ->
+        {
+            Cost cost = new Cost(text.getTime(), value);
+            costSender.send(cost);
+        });
+
     }
 }
