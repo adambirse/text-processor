@@ -33,7 +33,7 @@ public class TextProcessor {
         List<BigDecimal> values = extractor.extract(text.getText());
         values.stream().forEach(value ->
         {
-            Cost cost = new Cost(text.getTime(), value);
+            Cost cost = new Cost(text.getDate(), value);
             costSender.send(cost);
         });
 

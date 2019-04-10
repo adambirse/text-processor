@@ -10,7 +10,7 @@ public class Cost {
 
     private Long id;
 
-    private LocalDate time;
+    private LocalDate date;
 
     private BigDecimal cost;
 
@@ -18,18 +18,18 @@ public class Cost {
         id = RandomIDGenerator.generateLong();
     }
 
-    public Cost(LocalDate time, BigDecimal cost) {
+    public Cost(LocalDate date, BigDecimal cost) {
         id = RandomIDGenerator.generateLong();
-        this.time = time;
+        this.date = date;
         this.cost = cost;
     }
 
-    public LocalDate getTime() {
-        return time;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setTime(LocalDate time) {
-        this.time = time;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public BigDecimal getCost() {
@@ -44,7 +44,7 @@ public class Cost {
     public String toString() {
         return "Cost{" +
                 "id=" + id +
-                ", time=" + time +
+                ", date=" + date +
                 ", cost=" + cost +
                 '}';
     }

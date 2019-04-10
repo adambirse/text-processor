@@ -62,7 +62,7 @@ public class KafkaConfig {
 
     @Bean
     public KafkaTemplate<Long, Cost> kafkaTemplate() {
-        return new KafkaTemplate<Long,Cost>(producerFactory());
+        return new KafkaTemplate<Long, Cost>(producerFactory());
     }
 
     @Bean

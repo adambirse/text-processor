@@ -9,7 +9,7 @@ public class Text {
 
     private Long id;
 
-    private LocalDate time;
+    private LocalDate date;
 
     private String text;
 
@@ -22,18 +22,18 @@ public class Text {
         this.text = text;
     }
 
-    public Text(Long id, LocalDate time, String text) {
+    public Text(Long id, LocalDate date, String text) {
         this.id = id;
-        this.time = time;
+        this.date = date;
         this.text = text;
     }
 
-    public LocalDate getTime() {
-        return time;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setTime(LocalDate time) {
-        this.time = time;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getText() {
@@ -48,7 +48,7 @@ public class Text {
     public String toString() {
         return "Text{" +
                 "id=" + id +
-                ", time=" + time +
+                ", date=" + date +
                 ", text='" + text + '\'' +
                 '}';
     }
