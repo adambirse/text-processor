@@ -1,13 +1,6 @@
 package com.birse.processor.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * Domain class used by Kafka
@@ -16,29 +9,30 @@ public class Text {
 
     private Long id;
 
-    private LocalDateTime time;
+    private LocalDate time;
 
     private String text;
 
     public Text() {
         id = RandomIDGenerator.generateLong();
     }
+
     public Text(String text) {
         id = RandomIDGenerator.generateLong();
         this.text = text;
     }
 
-    public Text(Long id, LocalDateTime time, String text) {
+    public Text(Long id, LocalDate time, String text) {
         this.id = id;
         this.time = time;
         this.text = text;
     }
 
-    public LocalDateTime getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 
